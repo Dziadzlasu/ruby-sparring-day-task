@@ -26,7 +26,7 @@ class Zoo
       'Oh no! There are no animals in our ZOO!'
     elsif @count == 1
       'There is only one animal in our ZOO! '
-    elsif @count == 2 && @animal.map(&:class).uniq.length == 1
+    elsif @count > 1 && @animal.map(&:class).uniq.length == 1
       "For now there are only #{@count} #{@animal.first.class.name.downcase}s here! "
     elsif @count > 1 && @count < 5
       "For now there are only #{@count} animals here! "
