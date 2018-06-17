@@ -1,3 +1,4 @@
+require 'pry'
 class Lemur
   attr_reader :name, :kind, :description
 
@@ -8,7 +9,8 @@ class Lemur
   end
 
   def info
-    @description[0] = description[0].downcase
+    # binding.pry
+    @description[0] = description[0].downcase unless @description.split.first.eql?('King')
     "#{self.class} (kind: #{kind}) #{name} - #{description}"
   end
 end

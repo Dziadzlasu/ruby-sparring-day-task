@@ -32,7 +32,7 @@ class Zoo
       "For now there are only #{@count} animals here! "
     elsif @count > 4 && @count < 10
       "There are #{@count} animals in our ZOO! "
-    elsif @count > 9
+    else
       "Yayy! We have #{@count} residents now! "
     end
   end

@@ -1,3 +1,4 @@
+require 'pry'
 require 'spec_helper'
 require_relative '../services/zoo'
 
@@ -23,6 +24,11 @@ describe Zoo do
     end
     let(:lemur_mort) do
       Lemur.new(name: 'Mort', kind: "Goodman's mouse", description: 'The cutest thing you will ever see')
+    end
+
+    # Additional animal
+    let(:lemur_maurice) do
+      Lemur.new(name: 'Maurice', kind: 'Aye-aye', description: "King Julien's adviser and right-hand man")
     end
 
     it 'returns proper ZOO inventory when there are no animals present' do
@@ -105,6 +111,37 @@ describe Zoo do
         'Penguin Private likes to be bossy, Penguin Rico eats everything, '\
         'Alligator Roger likes to swim in the sewer, Penguin Skipper is the main man here. '\
         'You need to visit us as soon as possible!'
+    end
+
+    # Additional tests
+    it 'returns alphabetically ordered ZOO inventory for 4 penguins - Skipper, Rico, Private and Kowalski' do
+      animals = [penguin_skipper, penguin_rico, penguin_private, penguin_kowalski]
+
+      subject.add_animals(animals)
+
+      expect(subject.inventory).to eq 'For now there are only 4 penguins here! '\
+        'Penguin Kowalski does not like to talk much, Penguin Private likes to be bossy, '\
+        'Penguin Rico eats everything, Penguin Skipper is the main man here. '\
+        'Hope you will enjoy your visit!'
+    end
+
+    it 'returns alphabetically ordered ZOO inventory for 2 lemurs - Julien and Mort' do
+      subject.add_animals([lemur_mort, lemur_julien])
+
+      expect(subject.inventory).to eq 'For now there are only 2 lemurs here! '\
+        'Lemur (kind: Ring tailed) Julien - self-appointed king of everything and '\
+        "Lemur (kind: Goodman's mouse) Mort - the cutest thing you will ever see. "\
+        'Hope you will enjoy your visit!'
+    end
+
+    it 'returns alphabetically ordered ZOO inventory for 3 lemurs - Julien, Maurice and Mort' do
+      subject.add_animals([lemur_mort, lemur_julien, lemur_maurice])
+# binding.pry
+      expect(subject.inventory).to eq 'For now there are only 3 lemurs here! '\
+        'Lemur (kind: Ring tailed) Julien - self-appointed king of everything, '\
+        "Lemur (kind: Aye-aye) Maurice - King Julien's adviser and right-hand man, "\
+        "Lemur (kind: Goodman's mouse) Mort - the cutest thing you will ever see. "\
+        'Hope you will enjoy your visit!'
     end
   end
 end
