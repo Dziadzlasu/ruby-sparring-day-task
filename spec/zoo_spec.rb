@@ -1,4 +1,3 @@
-require 'pry'
 require 'spec_helper'
 require_relative '../services/zoo'
 
@@ -136,7 +135,7 @@ describe Zoo do
 
     it 'returns alphabetically ordered ZOO inventory for 3 lemurs - Julien, Maurice and Mort' do
       subject.add_animals([lemur_mort, lemur_julien, lemur_maurice])
-# binding.pry
+
       expect(subject.inventory).to eq 'For now there are only 3 lemurs here! '\
         'Lemur (kind: Ring tailed) Julien - self-appointed king of everything, '\
         "Lemur (kind: Aye-aye) Maurice - King Julien's adviser and right-hand man, "\
